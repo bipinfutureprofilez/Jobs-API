@@ -8,6 +8,7 @@ const getAllJobs = async (req, res, next) => {
     res.status(StatusCodes.OK).json({ jobs })
 }
 
+
 const createJob = async (req, res) => {
     req.body.createdBy = req.user.userId;
     const job = await Job.create(req.body);

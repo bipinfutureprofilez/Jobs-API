@@ -27,10 +27,16 @@ const connectDB = require('./db/connection');
 const PORT = process.env.PORT || 3000;
 
 
+const freeRouter = require('./routers/freeJobs')
 const jobRouter = require('./routers/jobs');
 const authRouter = require('./routers/auth');
 const authentication = require('./middleware/authentication')
 
+app.get('/', (req, res) => {
+    res.send('<h1>Welcome <a href="/free">Get start free and see all jobs here...</a></h1>')
+})
+
+app.use('/free', freeRouter);
 app.use('/auth', authRouter);
 app.use('/jobs', authentication, jobRouter);
 
